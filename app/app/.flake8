@@ -1,0 +1,9 @@
+[flake8]
+exlude = 
+    migrations,
+    __pycache__,
+    manage.py,
+    settings.py
+
+    #excluded, because of the 79 characters rule of each line
+     

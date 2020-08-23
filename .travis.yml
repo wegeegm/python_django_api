@@ -1,0 +1,15 @@
+language: python
+python: 
+    - "3.6"
+    #installs python 3.6
+
+services: 
+    - docker
+    #makes the dockeer service available
+
+before_script: pip install docker-compose
+
+script: 
+    - docker-compose run app sh -c "python manage.py test && flake8"
+     #finally runs our command and if this fails, we will receive a notification
+     

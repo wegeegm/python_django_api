@@ -4,7 +4,12 @@ ENV PYTHONUNBUFFERD 1
 # run python in unbufferd mode --> bc of the docker image
 
 COPY ./requirements.txt /requirements.txt
+RUN apk add --update --no-cache postgresql-client
+RUN apk add --update --no-cache --virtual .tmp-build-deps \
+        gcc libc-dev linux-headers postgresql-dev
 RUN pip install -r /requirements.txt
+#copy the requirements.txt to the docker image and runs it with pip
+RUN apk del  .tmp-build-deps
 #copy the requirements.txt to the docker image and runs it with pip
 
 RUN mkdir /app
